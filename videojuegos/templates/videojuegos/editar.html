@@ -1,0 +1,12 @@
+{% extends 'videojuegos/base.html' %}
+
+{% block contenido %}
+    <h1 class="mb-4">Editar videojuego</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{% url 'videojuegos:lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'videojuegos/base.html' %}
+
+{% block contenido %}
+    <h1 class="mb-4">🎮 Catálogo de Videojuegos</h1>
+
+    <a href="{% url 'videojuegos:crear' %}" class="btn btn-success mb-3">+ Agregar videojuego</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Género</th>
+                <th>Plataforma</th>
+                <th>Precio</th>
+                <th>Fecha de lanzamiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for videojuego in videojuegos %}
+            <tr>
+                <td>{{ videojuego.titulo }}</td>
+                <td>{{ videojuego.genero }}</td>
+                <td>{{ videojuego.plataforma }}</td>
+                <td>${{ videojuego.precio }}</td>
+                <td>{{ videojuego.fecha_lanzamiento }}</td>
+                <td>
+                    <a href="{% url 'videojuegos:editar' videojuego.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'videojuegos:eliminar' videojuego.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Aún no hay videojuegos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
